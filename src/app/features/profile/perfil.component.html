@@ -1,0 +1,60 @@
+<h2>Mi Perfil</h2>
+
+<div *ngIf="loading">Cargando datos...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<table *ngIf="empleado" class="perfil-table">
+  <tr>
+    <th colspan="2">Información Personal</th>
+  </tr>
+  <tr>
+    <td>Nombre completo</td>
+    <td>{{ empleado.nombres }} {{ empleado.apellidos }}</td>
+  </tr>
+  <tr>
+    <td>Identificación</td>
+    <td>{{ empleado.tipoDocumento }} {{ empleado.numeroDocumento }}</td>
+  </tr>
+  <tr>
+    <td>Correo</td>
+    <td>{{ empleado.correo }}</td>
+  </tr>
+  <tr>
+    <td>Teléfono</td>
+    <td>{{ empleado.telefono || 'No registrado' }}</td>
+  </tr>
+  <tr>
+    <td>Fecha de nacimiento</td>
+    <td>{{ empleado.fechaNacimiento | date:'dd/MM/yyyy' }}</td>
+  </tr>
+
+  <tr>
+    <th colspan="2">Información Laboral</th>
+  </tr>
+  <tr>
+    <td>Cargo</td>
+    <td>{{ empleado.cargo }}</td>
+  </tr>
+  <tr>
+    <td>Área</td>
+    <td>{{ empleado.area }}</td>
+  </tr>
+  <tr>
+    <td>Fecha de ingreso</td>
+    <td>{{ empleado.fechaIngreso | date:'dd/MM/yyyy' }}</td>
+  </tr>
+  <tr>
+    <td>Tipo de contrato</td>
+    <td>{{ empleado.tipoContrato }}</td>
+  </tr>
+  <tr>
+    <td>Estado</td>
+    <td>
+      <span class="estado" [class.activo]="empleado.estado === 'Activo'">
+        {{ empleado.estado }}
+      </span>
+    </td>
+  </tr>
+</table>
+
+<button class="logout-btn" (click)="logout()">Cerrar sesión</button>

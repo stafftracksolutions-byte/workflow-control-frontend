@@ -1,0 +1,7 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lux/bootstrap.min.css";
+
+/* Opcional: estilos propios */
+body {
+  background-color: #acf5ad;
+}

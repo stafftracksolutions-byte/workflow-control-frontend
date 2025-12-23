@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Dashboard</h1>
+  <p>Bienvenido, {{ user?.correo }}</p>
+
+  <!-- ADMIN / SUPERADMIN -->
+  <div *ngIf="user?.rol === 'admin' || user?.rol === 'superadmin'">
+    <h3>Gestión Administrativa</h3>
+
+    <ul>
+      <li><a routerLink="/empleados">Gestionar empleados</a></li>
+      <li><a routerLink="/reportes">Reportes</a></li>
+      <li *ngIf="user?.rol === 'superadmin'">
+        <a routerLink="/configuracion">Configuración avanzada</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- EMPLEADO -->
+  <div *ngIf="user?.rol === 'empleado'">
+    <h3>Mi Información</h3>
+
+    <ul>
+      <li><a routerLink="/perfil">Ver mi perfil</a></li>
+      <li>Estado laboral</li>
+      <li>Fecha de ingreso</li>
+      <li>Contacto administrativo</li>
+    </ul>
+
+    <p class="info">
+      Si tus datos son incorrectos, comunícate con el área administrativa.
+    </p>
+  </div>
+
+  <button (click)="logout()">Cerrar sesión</button>
+</div>
