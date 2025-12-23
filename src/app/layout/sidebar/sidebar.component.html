@@ -1,4 +1,42 @@
-<ul class="list-group list-group-flush">
-  <li class="list-group-item">Dashboard</li>
-  <li class="list-group-item">Mi Perfil</li>
-</ul>
+<aside class="sidebar">
+
+  <ul class="menu">
+
+    <!-- DASHBOARD (todos) -->
+    <li>
+      <a routerLink="/dashboard" routerLinkActive="active">
+        Dashboard
+      </a>
+    </li>
+
+    <!-- PERFIL (empleado) -->
+    <li *ngIf="auth.user?.rol === 'empleado'">
+      <a routerLink="/perfil" routerLinkActive="active">
+        Mi Perfil
+      </a>
+    </li>
+
+    <!-- EMPLEADOS (admin y superadmin) -->
+    <li *ngIf="auth.user?.rol === 'admin' || auth.user?.rol === 'superadmin'">
+      <a routerLink="/empleados" routerLinkActive="active">
+        Empleados
+      </a>
+    </li>
+
+    <!-- REPORTES (admin y superadmin) -->
+    <li *ngIf="auth.user?.rol === 'admin' || auth.user?.rol === 'superadmin'">
+      <a routerLink="/reportes" routerLinkActive="active">
+        Reportes
+      </a>
+    </li>
+
+    <!-- CONFIGURACIÓN (solo superadmin) -->
+    <li *ngIf="auth.user?.rol === 'superadmin'">
+      <a routerLink="/configuracion" routerLinkActive="active">
+        Configuración
+      </a>
+    </li>
+
+  </ul>
+
+</aside>

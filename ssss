@@ -1,0 +1,88 @@
+[1mdiff --git a/src/app/layout/sidebar/sidebar.component.html b/src/app/layout/sidebar/sidebar.component.html[m
+[1mindex fa0102a..66cd244 100644[m
+[1m--- a/src/app/layout/sidebar/sidebar.component.html[m
+[1m+++ b/src/app/layout/sidebar/sidebar.component.html[m
+[36m@@ -1,4 +1,42 @@[m
+[31m-<ul class="list-group list-group-flush">[m
+[31m-  <li class="list-group-item">Dashboard</li>[m
+[31m-  <li class="list-group-item">Mi Perfil</li>[m
+[31m-</ul>[m
+[32m+[m[32m<aside class="sidebar">[m
+[32m+[m
+[32m+[m[32m  <ul class="menu">[m
+[32m+[m
+[32m+[m[32m    <!-- DASHBOARD (todos) -->[m
+[32m+[m[32m    <li>[m
+[32m+[m[32m      <a routerLink="/dashboard" routerLinkActive="active">[m
+[32m+[m[32m        Dashboard[m
+[32m+[m[32m      </a>[m
+[32m+[m[32m    </li>[m
+[32m+[m
+[32m+[m[32m    <!-- PERFIL (empleado) -->[m
+[32m+[m[32m    <li *ngIf="auth.user?.rol === 'empleado'">[m
+[32m+[m[32m      <a routerLink="/perfil" routerLinkActive="active">[m
+[32m+[m[32m        Mi Perfil[m
+[32m+[m[32m      </a>[m
+[32m+[m[32m    </li>[m
+[32m+[m
+[32m+[m[32m    <!-- EMPLEADOS (admin y superadmin) -->[m
+[32m+[m[32m    <li *ngIf="auth.user?.rol === 'admin' || auth.user?.rol === 'superadmin'">[m
+[32m+[m[32m      <a routerLink="/empleados" routerLinkActive="active">[m
+[32m+[m[32m        Empleados[m
+[32m+[m[32m      </a>[m
+[32m+[m[32m    </li>[m
+[32m+[m
+[32m+[m[32m    <!-- REPORTES (admin y superadmin) -->[m
+[32m+[m[32m    <li *ngIf="auth.user?.rol === 'admin' || auth.user?.rol === 'superadmin'">[m
+[32m+[m[32m      <a routerLink="/reportes" routerLinkActive="active">[m
+[32m+[m[32m        Reportes[m
+[32m+[m[32m      </a>[m
+[32m+[m[32m    </li>[m
+[32m+[m
+[32m+[m[32m    <!-- CONFIGURACIÓN (solo superadmin) -->[m
+[32m+[m[32m    <li *ngIf="auth.user?.rol === 'superadmin'">[m
+[32m+[m[32m      <a routerLink="/configuracion" routerLinkActive="active">[m
+[32m+[m[32m        Configuración[m
+[32m+[m[32m      </a>[m
+[32m+[m[32m    </li>[m
+[32m+[m
+[32m+[m[32m  </ul>[m
+[32m+[m
+[32m+[m[32m</aside>[m
+[1mdiff --git a/src/app/layout/sidebar/sidebar.component.ts b/src/app/layout/sidebar/sidebar.component.ts[m
+[1mindex 941faaf..e2bc860 100644[m
+[1m--- a/src/app/layout/sidebar/sidebar.component.ts[m
+[1m+++ b/src/app/layout/sidebar/sidebar.component.ts[m
+[36m@@ -1,17 +1,15 @@[m
+ import { Component, inject } from '@angular/core';[m
+ import { CommonModule } from '@angular/common';[m
+[32m+[m[32mimport { RouterModule } from '@angular/router';[m
+ import { AuthService } from '../../core/services/auth.service';[m
+ [m
+ @Component({[m
+   selector: 'app-sidebar',[m
+   standalone: true,[m
+[31m-  imports: [CommonModule],[m
+[31m-  templateUrl: './sidebar.component.html'[m
+[32m+[m[32m  imports: [CommonModule, RouterModule],[m
+[32m+[m[32m  templateUrl: './sidebar.component.html',[m
+[32m+[m[32m  styleUrls: ['./sidebar.component.css'][m
+ })[m
+ export class SidebarComponent {[m
+   auth = inject(AuthService);[m
+[31m-[m
+[31m-  hasRole(role: string) {[m
+[31m-    return this.auth.user?.rol === role;[m
+[31m-  }[m
+ }[m
+[1mdiff --git a/src/styles.css b/src/styles.css[m
+[1mindex 1d547d7..5480ef5 100644[m
+[1m--- a/src/styles.css[m
+[1m+++ b/src/styles.css[m
+[36m@@ -3,5 +3,5 @@[m
+ [m
+ /* Opcional: estilos propios */[m
+ body {[m
+[31m-  background-color: #acf5ad;[m
+[32m+[m[32m  background-color: #f3bc8f;[m
+ }[m
