@@ -1,22 +1,33 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+// features/employees/empleados.component.ts
 
-@Injectable({
-  providedIn: 'root'
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { EmpleadosService } from '../../core/services/empleados.service';
+import { Empleado } from '../../models/empleado.model';
+
+@Component({
+  selector: 'app-empleados',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './empleados.component.html',
+  styleUrls: ['./empleados.component.css']
 })
-export class EmpleadosService {
+export class EmpleadosComponent implements OnInit {
 
-  private apiUrl = environment.apiUrl;
+  empleados: Empleado[] = [];  // array para almacenar los empleados
 
-  constructor(private http: HttpClient) {}
+  constructor(private empleadosService: EmpleadosService) {}
 
-  // 👤 Mis datos como empleado
-  getMisDatos(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/empleados/me`);
+  ngOnInit(): void {
+    // Traer todos los empleados desde el backend
+    this.empleadosService.list().subscribe({
+      next: (res: any) => {
+        this.empleados = res.data;
+        console.log('Empleados:', this.empleados);
+      },
+      error: (err) => {
+        console.error('Error cargando empleados', err);
+      }
+    });
   }
-}
-
-export class EmpleadosComponent {
 }

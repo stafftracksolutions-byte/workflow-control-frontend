@@ -38,8 +38,12 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    canActivate: [AuthGuard],
     children: [
+      {
+        path: '',
+      redirectTo: 'dashboard',
+      pathMatch: 'full'
+      },
       {
     path: 'perfil',
     loadComponent: () =>

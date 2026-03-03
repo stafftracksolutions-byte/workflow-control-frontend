@@ -1,1 +1,38 @@
-<p>empleados works!</p>
+<!-- features/employees/empleados.component.html -->
+
+<div class="container">
+  <h2>Lista de Empleados</h2>
+
+  <table *ngIf="empleados.length > 0" class="empleados-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Correo</th>
+        <th>Teléfono</th>
+        <th>Cargo</th>
+        <th>Área</th>
+        <th>Tipo Contrato</th>
+        <th>Salario</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of empleados; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ emp.nombres }}</td>
+        <td>{{ emp.apellidos }}</td>
+        <td>{{ emp.correo }}</td>
+        <td>{{ emp.telefono }}</td>
+        <td>{{ emp.cargo }}</td>
+        <td>{{ emp.area }}</td>
+        <td>{{ emp.tipoContrato }}</td>
+        <td>{{ emp.salario | currency:'COP':'symbol':'1.0-0' }}</td>
+        <td>{{ emp.estado }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="empleados.length === 0">No hay empleados registrados.</p>
+</div>
