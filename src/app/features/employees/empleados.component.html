@@ -3,6 +3,10 @@
 <div class="container">
   <h2>Lista de Empleados</h2>
 
+  <button routerLink="/empleados/crear">
+  Nuevo empleado
+  </button>
+
   <table *ngIf="empleados.length > 0" class="empleados-table">
     <thead>
       <tr>

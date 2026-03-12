@@ -16,57 +16,49 @@
   </div>
 
   <!-- EMPLEADO -->
-<div *ngIf="user?.rol === 'empleado'">
+<div *ngIf="user?.rol === 'empleado'" class="dashboard-empleado">
 
   <h3>Mi Información</h3>
 
-  <!-- Cargando -->
-  <div *ngIf="cargando">
-    Cargando información...
-  </div>
+  <div *ngIf="cargando">Cargando información...</div>
+  <div *ngIf="error">No se pudo cargar la información del empleado.</div>
 
-  <!-- Error -->
-  <div *ngIf="error">
-    No se pudo cargar la información del empleado.
-  </div>
+  <div *ngIf="empleado" class="cards-container">
 
-  <!-- Información real -->
-  <div *ngIf="empleado">
-
+    <!-- Card Información -->
     <div class="card">
       <h4>{{ empleado.nombres }} {{ empleado.apellidos }}</h4>
       <p><strong>Cargo:</strong> {{ empleado.cargo }}</p>
       <p><strong>Área:</strong> {{ empleado.area }}</p>
-      <p><strong>Tipo de contrato:</strong> {{ empleado.tipoContrato }}</p>
-      <p><strong>Fecha de ingreso:</strong> {{ empleado.fechaIngreso | date }}</p>
+      <p><strong>Contrato:</strong> {{ empleado.tipoContrato }}</p>
+      <p><strong>Ingreso:</strong> {{ empleado.fechaIngreso | date:'dd/MM/yyyy' }}</p>
     </div>
 
-    <div class="card">
+    <!-- Card Estado -->
+    <div class="card estado-card">
       <h4>Estado Laboral</h4>
-
       <p *ngIf="empleado.estado === 'Activo'" class="activo">
         🟢 Activo - Puede registrar asistencia normalmente.
       </p>
-
       <p *ngIf="empleado.estado !== 'Activo'" class="inactivo">
         🔴 Inactivo - Contacte al área administrativa.
       </p>
     </div>
 
-    <div class="card">
+    <!-- Card Acciones -->
+    <div class="card acciones-card">
       <h4>Acciones</h4>
       <ul>
-        <li><a routerLink="/perfil">Ver mi perfil completo</a></li>
-        <li><a routerLink="/asistencias">Ver historial de asistencias</a></li>
+        <li><a routerLink="/perfil">📄 Ver perfil completo</a></li>
+        <li><a routerLink="/asistencias">📊 Historial de asistencias</a></li>
       </ul>
     </div>
 
-    <p class="info">
-      Si tus datos son incorrectos, comunícate con el área administrativa.
-    </p>
-
   </div>
 
+  <p class="info">
+    Si tus datos son incorrectos, comunícate con el área administrativa.
+  </p>
 </div>
 
 

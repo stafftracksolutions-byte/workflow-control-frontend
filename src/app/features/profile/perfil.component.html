@@ -1,60 +1,36 @@
 <h2>Mi Perfil</h2>
 
-<div *ngIf="loading">Cargando datos...</div>
+<div *ngIf="loading" class="loading">Cargando datos...</div>
 <div *ngIf="error" class="error">{{ error }}</div>
 
-<table *ngIf="empleado" class="perfil-table">
-  <tr>
-    <th colspan="2">Información Personal</th>
-  </tr>
-  <tr>
-    <td>Nombre completo</td>
-    <td>{{ empleado.nombres }} {{ empleado.apellidos }}</td>
-  </tr>
-  <tr>
-    <td>Identificación</td>
-    <td>{{ empleado.tipoDocumento }} {{ empleado.numeroDocumento }}</td>
-  </tr>
-  <tr>
-    <td>Correo</td>
-    <td>{{ empleado.correo }}</td>
-  </tr>
-  <tr>
-    <td>Teléfono</td>
-    <td>{{ empleado.telefono || 'No registrado' }}</td>
-  </tr>
-  <tr>
-    <td>Fecha de nacimiento</td>
-    <td>{{ empleado.fechaNacimiento | date:'dd/MM/yyyy' }}</td>
-  </tr>
+<div *ngIf="empleado" class="perfil-container">
 
-  <tr>
-    <th colspan="2">Información Laboral</th>
-  </tr>
-  <tr>
-    <td>Cargo</td>
-    <td>{{ empleado.cargo }}</td>
-  </tr>
-  <tr>
-    <td>Área</td>
-    <td>{{ empleado.area }}</td>
-  </tr>
-  <tr>
-    <td>Fecha de ingreso</td>
-    <td>{{ empleado.fechaIngreso | date:'dd/MM/yyyy' }}</td>
-  </tr>
-  <tr>
-    <td>Tipo de contrato</td>
-    <td>{{ empleado.tipoContrato }}</td>
-  </tr>
-  <tr>
-    <td>Estado</td>
-    <td>
+  <!-- Información Personal -->
+  <div class="perfil-card">
+    <h3>Información Personal</h3>
+    <p><strong>Nombre completo:</strong> {{ empleado.nombres }} {{ empleado.apellidos }}</p>
+    <p><strong>Identificación:</strong> {{ empleado.tipoDocumento }} {{ empleado.numeroDocumento }}</p>
+    <p><strong>Fecha de nacimiento:</strong> {{ empleado.fechaNacimiento | date:'dd/MM/yyyy' }}</p>
+    <p><strong>Correo:</strong> {{ empleado.correo }}</p>
+    <p><strong>Teléfono:</strong> {{ empleado.telefono || 'No registrado' }}</p>
+  </div>
+
+  <!-- Información Laboral -->
+  <div class="perfil-card">
+    <h3>Información Laboral</h3>
+    <p><strong>Cargo:</strong> {{ empleado.cargo }}</p>
+    <p><strong>Área:</strong> {{ empleado.area }}</p>
+    <p><strong>Fecha de ingreso:</strong> {{ empleado.fechaIngreso | date:'dd/MM/yyyy' }}</p>
+    <p><strong>Tipo de contrato:</strong> {{ empleado.tipoContrato }}</p>
+    <p><strong>Salario:</strong> {{ empleado.salario | currency:'COP':'symbol':'1.0-0' }}</p>
+    <p>
+      <strong>Estado:</strong>
       <span class="estado" [class.activo]="empleado.estado === 'Activo'">
         {{ empleado.estado }}
       </span>
-    </td>
-  </tr>
-</table>
+    </p>
+  </div>
+
+</div>
 
 <button class="logout-btn" (click)="logout()">Cerrar sesión</button>

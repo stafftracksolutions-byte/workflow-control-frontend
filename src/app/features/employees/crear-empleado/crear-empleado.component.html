@@ -1,0 +1,76 @@
+<h2>Crear nuevo empleado</h2>
+
+<form [formGroup]="empleadoForm" (ngSubmit)="crearEmpleado()">
+
+<h3>Información personal</h3>
+
+<input type="text" placeholder="Nombres" formControlName="nombres">
+
+<input type="text" placeholder="Apellidos" formControlName="apellidos">
+
+
+<select formControlName="tipoDocumento">
+  <option value="">Tipo documento</option>
+  <option value="C.C.">C.C.</option>
+  <option value="C.E.">C.E.</option>
+  <option value="T.I.">T.I.</option>
+  <option value="Pasaporte">Pasaporte</option>
+</select>
+
+
+<input type="number" placeholder="Número documento" formControlName="numeroDocumento">
+
+
+<input type="date" formControlName="fechaNacimiento">
+
+
+<input type="email" placeholder="Correo electrónico" formControlName="correo">
+
+
+<input type="text" placeholder="Teléfono" formControlName="telefono">
+
+
+<h3>Información laboral</h3>
+
+
+<input type="text" placeholder="Cargo" formControlName="cargo">
+
+
+<select formControlName="area">
+  <option value="">Área</option>
+  <option value="Administración">Administración</option>
+  <option value="Finanzas">Finanzas</option>
+  <option value="Tecnología">Tecnología</option>
+  <option value="Marketing">Marketing</option>
+  <option value="Ventas">Ventas</option>
+  <option value="Producción">Producción</option>
+</select>
+
+
+<input type="date" formControlName="fechaIngreso">
+
+
+<select formControlName="tipoContrato">
+  <option value="">Tipo contrato</option>
+  <option value="Indefinido">Indefinido</option>
+  <option value="Fijo">Fijo</option>
+  <option value="Prestación de servicios">Prestación de servicios</option>
+</select>
+
+
+<input type="number" placeholder="Salario" formControlName="salario">
+
+
+<select formControlName="estado">
+  <option value="Activo">Activo</option>
+  <option value="Inactivo">Inactivo</option>
+</select>
+
+
+<br><br>
+
+<button type="submit">
+  Guardar empleado
+</button>
+
+</form>

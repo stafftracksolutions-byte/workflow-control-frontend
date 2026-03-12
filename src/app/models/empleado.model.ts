@@ -4,7 +4,7 @@ export interface Empleado {
   apellidos: string;
   tipoDocumento?: string;
   numeroDocumento?: number;
-  fechaNacimiento?: string;
+  fechaNacimiento?: Date;
   correo?: string;
   telefono?: string;
   cargo?: string;
@@ -12,5 +12,5 @@ export interface Empleado {
   tipoContrato?: string;
   salario?: number;
   estado?: string;
-  fechaIngreso?: string;
+  fechaIngreso?: Date;
 }
