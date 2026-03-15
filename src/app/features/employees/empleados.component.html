@@ -1,39 +1,41 @@
 <!-- features/employees/empleados.component.html -->
 
 <div class="container">
-  <h2>Lista de Empleados</h2>
+  <h1>Lista de Empleados</h1>
 
-  <button routerLink="/empleados/crear">
-  Nuevo empleado
-  </button>
+  <button routerLink="/empleados/crear">Nuevo empleado</button>
 
   <table *ngIf="empleados.length > 0" class="empleados-table">
     <thead>
       <tr>
         <th>#</th>
-        <th>Nombres</th>
-        <th>Apellidos</th>
+        <th>Nombre</th>
+        <th>NUIP</th>
         <th>Correo</th>
         <th>Teléfono</th>
-        <th>Cargo</th>
-        <th>Área</th>
-        <th>Tipo Contrato</th>
         <th>Salario</th>
         <th>Estado</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let emp of empleados; let i = index">
         <td>{{ i + 1 }}</td>
-        <td>{{ emp.nombres }}</td>
-        <td>{{ emp.apellidos }}</td>
+        <td>{{ emp.nombres }} {{ emp.apellidos }}</td>
+        <td>{{ emp.tipoDocumento }} {{ emp.numeroDocumento }}</td>
         <td>{{ emp.correo }}</td>
         <td>{{ emp.telefono }}</td>
-        <td>{{ emp.cargo }}</td>
-        <td>{{ emp.area }}</td>
-        <td>{{ emp.tipoContrato }}</td>
-        <td>{{ emp.salario | currency:'COP':'symbol':'1.0-0' }}</td>
+        <td>{{ emp.salario | currency: "COP" : "symbol" : "1.0-0" }}</td>
         <td>{{ emp.estado }}</td>
+        <td class="acciones">
+          <button (click)="verEmpleado(emp._id!)" title="Ver">👁</button>
+
+          <button title="Editar">✏</button>
+
+          <button title="Eliminar">
+            🗑
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

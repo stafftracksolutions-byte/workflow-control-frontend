@@ -1,0 +1,28 @@
+<h2>Detalle del empleado</h2>
+
+<div *ngIf="empleado" class="detalle-container">
+
+  <!-- Información Personal -->
+  <h3>Información Personal</h3>
+  <table class="detalle-table">
+    <tr><td><strong>Nombres:</strong></td><td>{{ empleado.nombres }}</td></tr>
+    <tr><td><strong>Apellidos:</strong></td><td>{{ empleado.apellidos }}</td></tr>
+    <tr><td><strong>Documento:</strong></td><td>{{ empleado.tipoDocumento }} {{ empleado.numeroDocumento }}</td></tr>
+    <tr><td><strong>Numero:</strong></td><td>{{empleado.numeroDocumento}}</td></tr>
+    <tr><td><strong>Fecha Nacimiento:</strong></td><td>{{ empleado.fechaNacimiento | date:'dd/MM/yyyy' }}</td></tr>
+    <tr><td><strong>Correo:</strong></td><td>{{ empleado.correo }}</td></tr>
+    <tr><td><strong>Teléfono:</strong></td><td>{{ empleado.telefono }}</td></tr>
+  </table>
+
+  <!-- Información Laboral -->
+  <h3>Información Laboral</h3>
+  <table class="detalle-table">
+    <tr><td><strong>Cargo:</strong></td><td>{{ empleado.cargo }}</td></tr>
+    <tr><td><strong>Área:</strong></td><td>{{ empleado.area }}</td></tr>
+    <tr><td><strong>Tipo contrato:</strong></td><td>{{ empleado.tipoContrato }}</td></tr>
+    <tr><td><strong>Salario:</strong></td><td>{{ empleado.salario | currency:'COP':'symbol':'1.0-0' }}</td></tr>
+    <tr><td><strong>Estado:</strong></td><td>{{ empleado.estado }}</td></tr>
+    <tr><td><strong>Fecha Ingreso:</strong></td><td>{{ empleado.fechaIngreso | date:'dd/MM/yyyy' }}</td></tr>
+  </table>
+
+</div>

@@ -73,7 +73,14 @@ export const routes: Routes = [
   canActivate: [roleGuard(['admin','superadmin'])]
   },
   {
+  path: 'empleados/ver/:id',
+  loadComponent: () =>
+    import('./features/employees/ver-empleado/ver-empleado.component')
+      .then(m => m.VerEmpleadoComponent)
+},
+  {
     path: '**',
     redirectTo: 'login'
   }
+  
 ];
