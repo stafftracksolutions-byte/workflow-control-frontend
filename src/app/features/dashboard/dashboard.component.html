@@ -1,66 +1,107 @@
-<div class="container">
-  <h1>Dashboard</h1>
-  <p>Bienvenido, {{ user?.correo }}</p>
+<div class="container mt-4">
+  <h1 class="text-center mb-4">📊 Dashboard</h1>
+  <p class="text-center">Bienvenido, <strong>{{ user?.correo }}</strong></p>
 
   <!-- ADMIN / SUPERADMIN -->
-  <div *ngIf="user?.rol === 'admin' || user?.rol === 'superadmin'">
-    <h3>Gestión Administrativa</h3>
-
-    <ul>
-      <li><a routerLink="/empleados">Gestionar empleados</a></li>
-      <li><a routerLink="/reportes">Reportes</a></li>
-      <li *ngIf="user?.rol === 'superadmin'">
-        <a routerLink="/configuracion">Configuración avanzada</a>
-      </li>
-    </ul>
+  <div *ngIf="user?.rol === 'admin' || user?.rol === 'superadmin'" class="mb-5">
+    <h3 class="mb-3">Gestión Administrativa</h3>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 text-center">
+          <div class="card-body">
+            <h4 class="card-title">👥 Empleados</h4>
+            <a routerLink="/empleados" class="btn btn-primary mt-2 w-100">Gestionar empleados</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 text-center">
+          <div class="card-body">
+            <h4 class="card-title">📈 Reportes</h4>
+            <a routerLink="/reportes" class="btn btn-info mt-2 w-100">Ver reportes</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" *ngIf="user?.rol === 'superadmin'">
+        <div class="card shadow-sm h-100 text-center">
+          <div class="card-body">
+            <h4 class="card-title">⚙️ Configuración</h4>
+            <a routerLink="/configuracion" class="btn btn-warning mt-2 w-100">Configuración avanzada</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- EMPLEADO -->
-<div *ngIf="user?.rol === 'empleado'" class="dashboard-empleado">
+  <div *ngIf="user?.rol === 'empleado'" class="dashboard-empleado">
+    <h3 class="mb-3">Mi Información</h3>
 
-  <h3>Mi Información</h3>
+    <!-- Mensajes de estado -->
+    <div *ngIf="cargando" class="alert alert-info">Cargando información...</div>
+    <div *ngIf="error" class="alert alert-danger">No se pudo cargar la información del empleado.</div>
 
-  <div *ngIf="cargando">Cargando información...</div>
-  <div *ngIf="error">No se pudo cargar la información del empleado.</div>
+    <!-- Cards -->
+    <div *ngIf="empleado" class="row g-3">
+      
+      <!-- Card Información -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h4 class="card-title">{{ empleado.nombres }} {{ empleado.apellidos }}</h4>
+            <p><strong>Cargo:</strong> {{ empleado.cargo }}</p>
+            <p><strong>Área:</strong> {{ empleado.area }}</p>
+            <p><strong>Contrato:</strong> {{ empleado.tipoContrato }}</p>
+            <p><strong>Ingreso:</strong> {{ empleado.fechaIngreso | date:'dd/MM/yyyy' }}</p>
+          </div>
+        </div>
+      </div>
 
-  <div *ngIf="empleado" class="cards-container">
+      <!-- Card Estado -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h4 class="card-title">Estado Laboral</h4>
+            <p *ngIf="empleado.estado === 'Activo'" class="text-success fw-bold">
+              🟢 Activo - Puede registrar asistencia normalmente.
+            </p>
+            <p *ngIf="empleado.estado !== 'Activo'" class="text-danger fw-bold">
+              🔴 Inactivo - Contacte al área administrativa.
+            </p>
+          </div>
+        </div>
+      </div>
 
-    <!-- Card Información -->
-    <div class="card">
-      <h4>{{ empleado.nombres }} {{ empleado.apellidos }}</h4>
-      <p><strong>Cargo:</strong> {{ empleado.cargo }}</p>
-      <p><strong>Área:</strong> {{ empleado.area }}</p>
-      <p><strong>Contrato:</strong> {{ empleado.tipoContrato }}</p>
-      <p><strong>Ingreso:</strong> {{ empleado.fechaIngreso | date:'dd/MM/yyyy' }}</p>
+      <!-- Card Acciones -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h4 class="card-title">Acciones</h4>
+            <ul class="list-unstyled">
+              <li>
+                <!-- Botón que lleva a /perfil -->
+                <button routerLink="/perfil" class="btn btn-outline-primary w-100 mb-2">
+                  📄 Ver perfil completo
+                </button>
+              </li>
+              <li>
+                <button routerLink="/asistencias" class="btn btn-outline-success w-100">
+                  📊 Historial de asistencias
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Card Estado -->
-    <div class="card estado-card">
-      <h4>Estado Laboral</h4>
-      <p *ngIf="empleado.estado === 'Activo'" class="activo">
-        🟢 Activo - Puede registrar asistencia normalmente.
-      </p>
-      <p *ngIf="empleado.estado !== 'Activo'" class="inactivo">
-        🔴 Inactivo - Contacte al área administrativa.
-      </p>
-    </div>
-
-    <!-- Card Acciones -->
-    <div class="card acciones-card">
-      <h4>Acciones</h4>
-      <ul>
-        <li><a routerLink="/perfil">📄 Ver perfil completo</a></li>
-        <li><a routerLink="/asistencias">📊 Historial de asistencias</a></li>
-      </ul>
-    </div>
-
+    <p class="text-muted mt-3">
+      Si tus datos son incorrectos, comunícate con el área administrativa.
+    </p>
   </div>
 
-  <p class="info">
-    Si tus datos son incorrectos, comunícate con el área administrativa.
-  </p>
-</div>
-
-
-  <button (click)="logout()">Cerrar sesión</button>
+  <!-- Botón logout -->
+  <div class="text-center mt-4">
+    <button class="btn btn-danger" (click)="logout()">🚪 Cerrar sesión</button>
+  </div>
 </div>

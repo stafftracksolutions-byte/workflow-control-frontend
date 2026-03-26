@@ -1,76 +1,120 @@
-<h2>Crear nuevo empleado</h2>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">✨ Crear nuevo empleado ✨</h2>
 
-<form [formGroup]="empleadoForm" (ngSubmit)="crearEmpleado()">
+  <form [formGroup]="empleadoForm" (ngSubmit)="crearEmpleado()" class="row g-4">
+    
+    <!-- Información Personal -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-primary text-white">
+          Información Personal
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label class="form-label">Nombres</label>
+            <input type="text" formControlName="nombres" class="form-control" placeholder="Ingresa nombres">
+          </div>
 
-<h3>Información personal</h3>
+          <div class="mb-3">
+            <label class="form-label">Apellidos</label>
+            <input type="text" formControlName="apellidos" class="form-control" placeholder="Ingresa apellidos">
+          </div>
 
-<input type="text" placeholder="Nombres" formControlName="nombres">
+          <div class="mb-3">
+            <label class="form-label">Tipo documento</label>
+            <select formControlName="tipoDocumento" class="form-select">
+              <option value="">Seleccione...</option>
+              <option value="C.C.">C.C.</option>
+              <option value="C.E.">C.E.</option>
+              <option value="T.I.">T.I.</option>
+              <option value="Pasaporte">Pasaporte</option>
+            </select>
+          </div>
 
-<input type="text" placeholder="Apellidos" formControlName="apellidos">
+          <div class="mb-3">
+            <label class="form-label">Número documento</label>
+            <input type="number" formControlName="numeroDocumento" class="form-control" placeholder="Ej: 123456789">
+          </div>
 
+          <div class="mb-3">
+            <label class="form-label">Fecha nacimiento</label>
+            <input type="date" formControlName="fechaNacimiento" class="form-control">
+          </div>
 
-<select formControlName="tipoDocumento">
-  <option value="">Tipo documento</option>
-  <option value="C.C.">C.C.</option>
-  <option value="C.E.">C.E.</option>
-  <option value="T.I.">T.I.</option>
-  <option value="Pasaporte">Pasaporte</option>
-</select>
+          <div class="mb-3">
+            <label class="form-label">Correo electrónico</label>
+            <input type="email" formControlName="correo" class="form-control" placeholder="ejemplo@correo.com">
+          </div>
 
+          <div class="mb-3">
+            <label class="form-label">Teléfono</label>
+            <input type="text" formControlName="telefono" class="form-control" placeholder="Ej: 3001234567">
+          </div>
+        </div>
+      </div>
+    </div>
 
-<input type="number" placeholder="Número documento" formControlName="numeroDocumento">
+    <!-- Información Laboral -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-success text-white">
+          Información Laboral
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label class="form-label">Cargo</label>
+            <input type="text" formControlName="cargo" class="form-control" placeholder="Ej: Analista">
+          </div>
 
+          <div class="mb-3">
+            <label class="form-label">Área</label>
+            <select formControlName="area" class="form-select">
+              <option value="">Seleccione...</option>
+              <option value="Administración">Administración</option>
+              <option value="Finanzas">Finanzas</option>
+              <option value="Tecnología">Tecnología</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Ventas">Ventas</option>
+              <option value="Producción">Producción</option>
+            </select>
+          </div>
 
-<input type="date" formControlName="fechaNacimiento">
+          <div class="mb-3">
+            <label class="form-label">Fecha ingreso</label>
+            <input type="date" formControlName="fechaIngreso" class="form-control">
+          </div>
 
+          <div class="mb-3">
+            <label class="form-label">Tipo contrato</label>
+            <select formControlName="tipoContrato" class="form-select">
+              <option value="">Seleccione...</option>
+              <option value="Indefinido">Indefinido</option>
+              <option value="Fijo">Fijo</option>
+              <option value="Prestación de servicios">Prestación de servicios</option>
+            </select>
+          </div>
 
-<input type="email" placeholder="Correo electrónico" formControlName="correo">
+          <div class="mb-3">
+            <label class="form-label">Salario</label>
+            <input type="number" formControlName="salario" class="form-control" placeholder="Ej: 2500000">
+          </div>
 
+          <div class="mb-3">
+            <label class="form-label">Estado</label>
+            <select formControlName="estado" class="form-select">
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<input type="text" placeholder="Teléfono" formControlName="telefono">
-
-
-<h3>Información laboral</h3>
-
-
-<input type="text" placeholder="Cargo" formControlName="cargo">
-
-
-<select formControlName="area">
-  <option value="">Área</option>
-  <option value="Administración">Administración</option>
-  <option value="Finanzas">Finanzas</option>
-  <option value="Tecnología">Tecnología</option>
-  <option value="Marketing">Marketing</option>
-  <option value="Ventas">Ventas</option>
-  <option value="Producción">Producción</option>
-</select>
-
-
-<input type="date" formControlName="fechaIngreso">
-
-
-<select formControlName="tipoContrato">
-  <option value="">Tipo contrato</option>
-  <option value="Indefinido">Indefinido</option>
-  <option value="Fijo">Fijo</option>
-  <option value="Prestación de servicios">Prestación de servicios</option>
-</select>
-
-
-<input type="number" placeholder="Salario" formControlName="salario">
-
-
-<select formControlName="estado">
-  <option value="Activo">Activo</option>
-  <option value="Inactivo">Inactivo</option>
-</select>
-
-
-<br><br>
-
-<button type="submit">
-  Guardar empleado
-</button>
-
-</form>
+    <!-- Botón Guardar -->
+    <div class="col-12 text-center">
+      <button type="submit" class="btn btn-primary btn-lg mt-3">
+        💾 Guardar empleado
+      </button>
+    </div>
+  </form>
+</div>

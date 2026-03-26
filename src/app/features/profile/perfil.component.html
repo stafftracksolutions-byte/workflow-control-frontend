@@ -1,36 +1,57 @@
-<h2>Mi Perfil</h2>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">👤 Mi Perfil</h2>
 
-<div *ngIf="loading" class="loading">Cargando datos...</div>
-<div *ngIf="error" class="error">{{ error }}</div>
+  <!-- Mensajes de estado -->
+  <div *ngIf="loading" class="alert alert-info">Cargando datos...</div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
 
-<div *ngIf="empleado" class="perfil-container">
+  <!-- Información del empleado -->
+  <div *ngIf="empleado" class="row g-4">
+    
+    <!-- Información Personal -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-primary text-white">
+          Información Personal
+        </div>
+        <div class="card-body">
+          <p><strong>Nombre completo:</strong> {{ empleado.nombres }} {{ empleado.apellidos }}</p>
+          <p><strong>Identificación:</strong> {{ empleado.tipoDocumento }} {{ empleado.numeroDocumento }}</p>
+          <p><strong>Fecha de nacimiento:</strong> {{ empleado.fechaNacimiento | date:'dd/MM/yyyy' }}</p>
+          <p><strong>Correo:</strong> {{ empleado.correo }}</p>
+          <p><strong>Teléfono:</strong> {{ empleado.telefono || 'No registrado' }}</p>
+        </div>
+      </div>
+    </div>
 
-  <!-- Información Personal -->
-  <div class="perfil-card">
-    <h3>Información Personal</h3>
-    <p><strong>Nombre completo:</strong> {{ empleado.nombres }} {{ empleado.apellidos }}</p>
-    <p><strong>Identificación:</strong> {{ empleado.tipoDocumento }} {{ empleado.numeroDocumento }}</p>
-    <p><strong>Fecha de nacimiento:</strong> {{ empleado.fechaNacimiento | date:'dd/MM/yyyy' }}</p>
-    <p><strong>Correo:</strong> {{ empleado.correo }}</p>
-    <p><strong>Teléfono:</strong> {{ empleado.telefono || 'No registrado' }}</p>
+    <!-- Información Laboral -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-success text-white">
+          Información Laboral
+        </div>
+        <div class="card-body">
+          <p><strong>Cargo:</strong> {{ empleado.cargo }}</p>
+          <p><strong>Área:</strong> {{ empleado.area }}</p>
+          <p><strong>Fecha de ingreso:</strong> {{ empleado.fechaIngreso | date:'dd/MM/yyyy' }}</p>
+          <p><strong>Tipo de contrato:</strong> {{ empleado.tipoContrato }}</p>
+          <p><strong>Salario:</strong> {{ empleado.salario | currency:'COP':'symbol':'1.0-0' }}</p>
+          <p>
+            <strong>Estado:</strong>
+            <span *ngIf="empleado.estado === 'Activo'" class="badge bg-success">
+              🟢 Activo
+            </span>
+            <span *ngIf="empleado.estado === 'Inactivo'" class="badge bg-danger">
+              🔴 Inactivo
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Información Laboral -->
-  <div class="perfil-card">
-    <h3>Información Laboral</h3>
-    <p><strong>Cargo:</strong> {{ empleado.cargo }}</p>
-    <p><strong>Área:</strong> {{ empleado.area }}</p>
-    <p><strong>Fecha de ingreso:</strong> {{ empleado.fechaIngreso | date:'dd/MM/yyyy' }}</p>
-    <p><strong>Tipo de contrato:</strong> {{ empleado.tipoContrato }}</p>
-    <p><strong>Salario:</strong> {{ empleado.salario | currency:'COP':'symbol':'1.0-0' }}</p>
-    <p>
-      <strong>Estado:</strong>
-      <span class="estado" [class.activo]="empleado.estado === 'Activo'">
-        {{ empleado.estado }}
-      </span>
-    </p>
+  <!-- Botón logout -->
+  <div class="text-center mt-4">
+    <button class="btn btn-danger" (click)="logout()">🚪 Cerrar sesión</button>
   </div>
-
 </div>
-
-<button class="logout-btn" (click)="logout()">Cerrar sesión</button>

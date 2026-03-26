@@ -5,3 +5,9 @@
 body {
   background-color: #f3bc8f;
 }
+
+/* Opcion bootstrap*/
+
+body {
+  background-color: var(--bs-secondary-bg); /* tono secundario del tema */
+}

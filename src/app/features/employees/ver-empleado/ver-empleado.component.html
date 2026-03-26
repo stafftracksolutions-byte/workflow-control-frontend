@@ -1,28 +1,56 @@
-<h2>Detalle del empleado</h2>
+<div class="container mt-4">
+  <h2 class="text-center mb-4">👤 Detalle del empleado</h2>
 
-<div *ngIf="empleado" class="detalle-container">
+  <div *ngIf="empleado" class="row g-4">
+    
+    <!-- Información Personal -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-primary text-white">
+          Información Personal
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-sm table-bordered mb-0">
+            <tbody>
+              <tr><td><strong>Nombres:</strong></td><td>{{ empleado.nombres }}</td></tr>
+              <tr><td><strong>Apellidos:</strong></td><td>{{ empleado.apellidos }}</td></tr>
+              <tr><td><strong>Documento:</strong></td><td>{{ empleado.tipoDocumento }} {{ empleado.numeroDocumento }}</td></tr>
+              <tr><td><strong>Número:</strong></td><td>{{ empleado.numeroDocumento }}</td></tr>
+              <tr><td><strong>Fecha Nacimiento:</strong></td><td>{{ empleado.fechaNacimiento | date:'dd/MM/yyyy' }}</td></tr>
+              <tr><td><strong>Correo:</strong></td><td>{{ empleado.correo }}</td></tr>
+              <tr><td><strong>Teléfono:</strong></td><td>{{ empleado.telefono }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-  <!-- Información Personal -->
-  <h3>Información Personal</h3>
-  <table class="detalle-table">
-    <tr><td><strong>Nombres:</strong></td><td>{{ empleado.nombres }}</td></tr>
-    <tr><td><strong>Apellidos:</strong></td><td>{{ empleado.apellidos }}</td></tr>
-    <tr><td><strong>Documento:</strong></td><td>{{ empleado.tipoDocumento }} {{ empleado.numeroDocumento }}</td></tr>
-    <tr><td><strong>Numero:</strong></td><td>{{empleado.numeroDocumento}}</td></tr>
-    <tr><td><strong>Fecha Nacimiento:</strong></td><td>{{ empleado.fechaNacimiento | date:'dd/MM/yyyy' }}</td></tr>
-    <tr><td><strong>Correo:</strong></td><td>{{ empleado.correo }}</td></tr>
-    <tr><td><strong>Teléfono:</strong></td><td>{{ empleado.telefono }}</td></tr>
-  </table>
+    <!-- Información Laboral -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header bg-success text-white">
+          Información Laboral
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-sm table-bordered mb-0">
+            <tbody>
+              <tr><td><strong>Cargo:</strong></td><td>{{ empleado.cargo }}</td></tr>
+              <tr><td><strong>Área:</strong></td><td>{{ empleado.area }}</td></tr>
+              <tr><td><strong>Tipo contrato:</strong></td><td>{{ empleado.tipoContrato }}</td></tr>
+              <tr><td><strong>Salario:</strong></td><td>{{ empleado.salario | currency:'COP':'symbol':'1.0-0' }}</td></tr>
+              <tr>
+                <td><strong>Estado:</strong></td>
+                <td>
+                  <span *ngIf="empleado.estado === 'Activo'" class="badge bg-success">🟢 Activo</span>
+                  <span *ngIf="empleado.estado !== 'Activo'" class="badge bg-danger">🔴 Inactivo</span>
+                </td>
+              </tr>
+              <tr><td><strong>Fecha Ingreso:</strong></td><td>{{ empleado.fechaIngreso | date:'dd/MM/yyyy' }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-  <!-- Información Laboral -->
-  <h3>Información Laboral</h3>
-  <table class="detalle-table">
-    <tr><td><strong>Cargo:</strong></td><td>{{ empleado.cargo }}</td></tr>
-    <tr><td><strong>Área:</strong></td><td>{{ empleado.area }}</td></tr>
-    <tr><td><strong>Tipo contrato:</strong></td><td>{{ empleado.tipoContrato }}</td></tr>
-    <tr><td><strong>Salario:</strong></td><td>{{ empleado.salario | currency:'COP':'symbol':'1.0-0' }}</td></tr>
-    <tr><td><strong>Estado:</strong></td><td>{{ empleado.estado }}</td></tr>
-    <tr><td><strong>Fecha Ingreso:</strong></td><td>{{ empleado.fechaIngreso | date:'dd/MM/yyyy' }}</td></tr>
-  </table>
-
+  </div>
 </div>
