@@ -1,12 +1,18 @@
 <div class="container mt-4">
-  <h2 class="text-center mb-4">✨ Crear nuevo empleado ✨</h2>
+  <!-- Título dinámico -->
+  <h2 class="mb-4 text-center">
+    <span [ngClass]="modo === 'crear' ? 'badge bg-success fs-4 p-3' : 'badge bg-warning text-dark fs-4 p-3'">
+      {{ modo === 'crear' ? '⭐ Crear nuevo empleado ⭐' : '✏️ Actualizar Empleado ✏️' }}
+    </span>
+  </h2>
 
+  <!-- Formulario -->
   <form [formGroup]="empleadoForm" (ngSubmit)="crearEmpleado()" class="row g-4">
-    
+
     <!-- Información Personal -->
     <div class="col-md-6">
       <div class="card shadow-sm h-100">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-primary text-white fw-bold">
           Información Personal
         </div>
         <div class="card-body">
@@ -57,7 +63,7 @@
     <!-- Información Laboral -->
     <div class="col-md-6">
       <div class="card shadow-sm h-100">
-        <div class="card-header bg-success text-white">
+        <div class="card-header bg-success text-white fw-bold">
           Información Laboral
         </div>
         <div class="card-body">
@@ -112,8 +118,11 @@
 
     <!-- Botón Guardar -->
     <div class="col-12 text-center">
-      <button type="submit" class="btn btn-primary btn-lg mt-3">
-        💾 Guardar empleado
+      <button 
+        type="submit" 
+        class="btn btn-lg mt-3"
+        [ngClass]="modo === 'crear' ? 'btn-success' : 'btn-warning text-dark'">
+        {{ modo === 'crear' ? '💾 Crear Empleado' : '✏️ Actualizar Empleado' }}
       </button>
     </div>
   </form>

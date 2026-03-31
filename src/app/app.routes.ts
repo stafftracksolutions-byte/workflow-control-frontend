@@ -78,6 +78,14 @@ export const routes: Routes = [
     import('./features/employees/ver-empleado/ver-empleado.component')
       .then(m => m.VerEmpleadoComponent)
 },
+{
+  path: 'empleados/editar/:id',
+  loadComponent: () =>
+    import('./features/employees/crear-empleado/crear-empleado.component')
+      .then(m => m.CrearEmpleadoComponent), // o EditarEmpleadoComponent si lo tienes separado
+  canActivate: [roleGuard(['admin','superadmin'])]
+},
+
   {
     path: '**',
     redirectTo: 'login'

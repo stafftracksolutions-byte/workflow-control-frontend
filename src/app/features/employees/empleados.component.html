@@ -38,10 +38,10 @@
           <button (click)="verEmpleado(emp._id!)" class="btn btn-sm btn-info me-1" title="Ver">
             👁
           </button>
-          <button class="btn btn-sm btn-warning me-1" title="Editar">
+          <button class="btn btn-sm btn-warning me-1" title="Editar" (click)="editarEmpleado(emp._id!)">
             ✏
           </button>
-          <button class="btn btn-sm btn-danger" title="Eliminar">
+          <button class="btn btn-sm btn-danger" title="Eliminar" (click)="eliminarEmpleado(emp._id!)">
             🗑
           </button>
         </td>
