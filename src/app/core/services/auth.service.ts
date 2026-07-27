@@ -56,6 +56,11 @@ export class AuthService {
     return this.currentUserSub.value;
   }
 
+  // 🔹 Nuevo: exponer el rol actual
+  get userRole(): string | null {
+    return this.currentUserSub.value?.rol ?? null;
+  }
+
   isAuthenticated(): boolean {
     return !!this.getToken();
   }

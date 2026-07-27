@@ -1,11 +1,18 @@
 <div class="container mt-4">
   <h1 class="text-center mb-4">👥 Lista de Empleados</h1>
 
-  <!-- Botón nuevo empleado -->
+  <!-- Botones de acciones superiores -->
   <div class="mb-3 text-end">
-    <a routerLink="/empleados/crear" class="btn btn-success">
+    <a routerLink="/empleados/crear" class="btn btn-success me-2">
       ➕ Nuevo empleado
     </a>
+
+    <!-- 🔹 Nuevo: botón eliminar todos (solo superadmin) -->
+    <button *ngIf="authService.userRole === 'superadmin'" 
+            (click)="deleteAllEmpleados()" 
+            class="btn btn-danger">
+      🗑 Eliminar todos
+    </button>
   </div>
 
   <!-- Tabla de empleados -->

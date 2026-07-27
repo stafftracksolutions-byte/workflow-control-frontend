@@ -36,4 +36,9 @@ export class EmpleadosService {
   me() {
     return this.http.get<Empleado>(`${this.api}/me`);
   }
+
+  // 🔹 Nuevo: eliminar todos los empleados (solo superadmin)
+  deleteAll(): Observable<any> {
+    return this.http.delete(`${this.api}`);
+  }
 }
